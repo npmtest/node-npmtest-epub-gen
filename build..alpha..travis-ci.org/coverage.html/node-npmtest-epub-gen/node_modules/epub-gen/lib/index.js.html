@@ -1,0 +1,1454 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for node-npmtest-epub-gen/node_modules/epub-gen/lib/index.js</title>
+    <meta charset="utf-8">
+    <style>
+        body, html {
+            margin:0; padding: 0;
+        }
+        body {
+            font-family: Arial, Helvetica;
+            font-size: 10pt;
+        }
+        div.header, div.footer {
+            background: #eee;
+            padding: 1em;
+        }
+        div.header {
+            height: 160px;
+            padding: 0 1em 0 1em;
+            z-index: 100;
+            position: fixed;
+            top: 0;
+            border-bottom: 1px solid #666;
+            width: 100%;
+        }
+        div.footer {
+            border-top: 1px solid #666;
+        }
+        div.body {
+            margin-top: 170px;
+        }
+        div.meta {
+            font-size: 90%;
+            text-align: center;
+        }
+        h1, h2, h3 {
+            font-weight: normal;
+        }
+        h1 {
+            font-size: 12pt;
+        }
+        h2 {
+            font-size: 10pt;
+        }
+        pre {
+            font-family: Menlo, Monaco, Consolas, Courier New, monospace;
+            margin: 0;
+            padding: 0;
+            font-size: 14px;
+            tab-size: 2;
+        }
+
+        div.path { font-size: 110%; }
+        div.path a:link, div.path a:visited { color: #000; }
+        table.coverage { border-collapse: collapse; margin:0; padding: 0 }
+
+        table.coverage td {
+            margin: 0;
+            padding: 0;
+            color: #111;
+            vertical-align: top;
+        }
+        table.coverage td.line-count {
+            width: 50px;
+            text-align: right;
+            padding-right: 5px;
+        }
+        table.coverage td.line-coverage {
+            color: #777 !important;
+            text-align: right;
+            border-left: 1px solid #666;
+            border-right: 1px solid #666;
+        }
+
+        table.coverage td.text {
+        }
+
+        table.coverage td span.cline-any {
+            display: inline-block;
+            padding: 0 5px;
+            width: 40px;
+        }
+        table.coverage td span.cline-neutral {
+            background: #eee;
+        }
+        table.coverage td span.cline-yes {
+            background: #b5d592;
+            color: #999;
+        }
+        table.coverage td span.cline-no {
+            background: #fc8c84;
+        }
+
+        .cstat-yes { color: #111; }
+        .cstat-no { background: #fc8c84; color: #111; }
+        .fstat-no { background: #ffc520; color: #111 !important; }
+        .cbranch-no { background:  yellow !important; color: #111; }
+
+        .cstat-skip { background: #ddd; color: #111; }
+        .fstat-skip { background: #ddd; color: #111 !important; }
+        .cbranch-skip { background: #ddd !important; color: #111; }
+
+        .missing-if-branch {
+            display: inline-block;
+            margin-right: 10px;
+            position: relative;
+            padding: 0 4px;
+            background: black;
+            color: yellow;
+        }
+
+        .skip-if-branch {
+            display: none;
+            margin-right: 10px;
+            position: relative;
+            padding: 0 4px;
+            background: #ccc;
+            color: white;
+        }
+
+        .missing-if-branch .typ, .skip-if-branch .typ {
+            color: inherit !important;
+        }
+
+        .entity, .metric { font-weight: bold; }
+        .metric { display: inline-block; border: 1px solid #333; padding: 0.3em; background: white; }
+        .metric small { font-size: 80%; font-weight: normal; color: #666; }
+
+        div.coverage-summary table { border-collapse: collapse; margin: 3em; font-size: 110%; }
+        div.coverage-summary td, div.coverage-summary table  th { margin: 0; padding: 0.25em 1em; border-top: 1px solid #666; border-bottom: 1px solid #666; }
+        div.coverage-summary th { text-align: left; border: 1px solid #666; background: #eee; font-weight: normal; }
+        div.coverage-summary th.file { border-right: none !important; }
+        div.coverage-summary th.pic { border-left: none !important; text-align: right; }
+        div.coverage-summary th.pct { border-right: none !important; }
+        div.coverage-summary th.abs { border-left: none !important; text-align: right; }
+        div.coverage-summary td.pct { text-align: right; border-left: 1px solid #666; }
+        div.coverage-summary td.abs { text-align: right; font-size: 90%; color: #444; border-right: 1px solid #666; }
+        div.coverage-summary td.file { text-align: right; border-left: 1px solid #666; white-space: nowrap;  }
+        div.coverage-summary td.pic { min-width: 120px !important;  }
+        div.coverage-summary a:link { color: #000; }
+        div.coverage-summary a:visited { color: #333; }
+        div.coverage-summary tfoot td { border-top: 1px solid #666; }
+
+        div.coverage-summary .yui3-datatable-sort-indicator, div.coverage-summary .dummy-sort-indicator {
+            height: 10px;
+            width: 7px;
+            display: inline-block;
+            margin-left: 0.5em;
+        }
+        div.coverage-summary .yui3-datatable-sort-indicator {
+            background: no-repeat scroll 0 0 transparent;
+        }
+        div.coverage-summary .yui3-datatable-sorted .yui3-datatable-sort-indicator {
+            background-position: 0 -20px;
+        }
+        div.coverage-summary .yui3-datatable-sorted-desc .yui3-datatable-sort-indicator {
+            background-position: 0 -10px;
+        }
+
+        .high { background: #b5d592 !important; }
+        .medium { background: #ffe87c !important; }
+        .low { background: #fc8c84 !important; }
+
+        span.cover-fill, span.cover-empty {
+            display:inline-block;
+            border:1px solid #444;
+            background: white;
+            height: 12px;
+        }
+        span.cover-fill {
+            background: #ccc;
+            border-right: 1px solid #444;
+        }
+        span.cover-empty {
+            background: white;
+            border-left: none;
+        }
+        span.cover-full {
+            border-right: none !important;
+        }
+        pre.prettyprint {
+            border: none !important;
+            padding: 0 !important;
+            margin: 0 !important;
+        }
+        .com { color: #999 !important; }
+        .ignore-none { color: #999; font-weight: normal; }
+
+    </style>
+</head>
+<body>
+<div class="header low">
+    <h1 style="font-weight: bold;">
+        <a href="https://github.com/npmtest/node-npmtest-epub-gen">npmtest-epub-gen (v0.0.1)</a>
+    </h1>
+    <h1>Code coverage report for <span class="entity">node-npmtest-epub-gen/node_modules/epub-gen/lib/index.js</span></h1>
+    <h2>
+        
+        Statements: <span class="metric">10.11% <small>(27 / 267)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        
+        Branches: <span class="metric">0.83% <small>(1 / 120)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        
+        Functions: <span class="metric">5.56% <small>(2 / 36)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        
+        Lines: <span class="metric">10.23% <small>(27 / 264)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
+    </h2>
+    <div class="path"><a href="../../../../index.html">All files</a> &#187; <a href="index.html">node-npmtest-epub-gen/node_modules/epub-gen/lib/</a> &#187; index.js</div>
+</div>
+<div class="body">
+<pre><table class="coverage">
+<tr><td class="line-count">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+284
+285
+286
+287
+288
+289
+290
+291
+292
+293
+294
+295
+296
+297
+298
+299
+300
+301
+302
+303
+304
+305
+306
+307
+308
+309
+310
+311
+312
+313
+314
+315
+316
+317
+318
+319
+320
+321
+322
+323
+324
+325
+326
+327
+328
+329
+330
+331
+332
+333
+334
+335
+336
+337
+338
+339
+340
+341
+342
+343
+344
+345
+346
+347
+348
+349
+350
+351
+352
+353
+354
+355
+356
+357
+358
+359
+360
+361
+362
+363
+364
+365
+366
+367
+368
+369
+370
+371
+372
+373
+374
+375
+376
+377
+378
+379
+380
+381
+382
+383
+384
+385
+386
+387
+388
+389
+390
+391
+392
+393
+394
+395
+396
+397
+398
+399
+400
+401
+402
+403
+404
+405
+406
+407
+408
+409
+410
+411</td><td class="line-coverage"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">// Generated by CoffeeScript 1.10.0
+(function() {
+  var EPub, Q, _, archiver, cheerio, ejs, entities, fs, fsextra, mime, path, removeDiacritics, request, rimraf, uslug, uuid,
+    indexOf = [].indexOf || <span class="fstat-no" title="function not covered" ><span class="branch-1 cbranch-no" title="branch not covered" >function(item) {</span> <span class="cstat-no" title="statement not covered" >for (var i = 0, l = this.length; i &lt; l; i++) { <span class="cstat-no" title="statement not covered" >if (i in this &amp;&amp; this[i] === item) <span class="cstat-no" title="statement not covered" >return i; </span></span>} <span class="cstat-no" title="statement not covered" ></span>return -1; </span>};</span>
+&nbsp;
+  path = require("path");
+&nbsp;
+  fs = require("fs");
+&nbsp;
+  Q = require("q");
+&nbsp;
+  _ = require("underscore");
+&nbsp;
+  uslug = require("uslug");
+&nbsp;
+  ejs = require("ejs");
+&nbsp;
+  cheerio = require("cheerio");
+&nbsp;
+  entities = require("entities");
+&nbsp;
+  request = require("superagent");
+&nbsp;
+  fsextra = require("fs-extra");
+&nbsp;
+  removeDiacritics = require("diacritics").remove;
+&nbsp;
+  mime = require("mime");
+&nbsp;
+  archiver = require("archiver");
+&nbsp;
+  rimraf = require("rimraf");
+&nbsp;
+  uuid = <span class="fstat-no" title="function not covered" >function() {</span>
+<span class="cstat-no" title="statement not covered" >    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, <span class="fstat-no" title="function not covered" >function(c) {</span></span>
+<span class="cstat-no" title="statement not covered" >      var r;</span>
+<span class="cstat-no" title="statement not covered" >      r = Math.random() * 16 | 0;</span>
+<span class="cstat-no" title="statement not covered" >      return (c === 'x' ? r : r &amp; 0x3 | 0x8).toString(16);</span>
+    });
+  };
+&nbsp;
+  EPub = (function() {
+<span class="fstat-no" title="function not covered" >    function EPub(options, output) {</span>
+<span class="cstat-no" title="statement not covered" >      var self;</span>
+<span class="cstat-no" title="statement not covered" >      this.options = options;</span>
+<span class="cstat-no" title="statement not covered" >      self = this;</span>
+<span class="cstat-no" title="statement not covered" >      this.defer = new Q.defer();</span>
+<span class="cstat-no" title="statement not covered" >      if (output) {</span>
+<span class="cstat-no" title="statement not covered" >        this.options.output = output;</span>
+      }
+<span class="cstat-no" title="statement not covered" >      if (!this.options.output) {</span>
+<span class="cstat-no" title="statement not covered" >        console.error(new Error("No Output Path"));</span>
+<span class="cstat-no" title="statement not covered" >        this.defer.reject(new Error("No output path"));</span>
+<span class="cstat-no" title="statement not covered" >        return;</span>
+      }
+<span class="cstat-no" title="statement not covered" >      if (!options.title || !options.content) {</span>
+<span class="cstat-no" title="statement not covered" >        console.error(new Error("Title and content are both required"));</span>
+<span class="cstat-no" title="statement not covered" >        this.defer.reject(new Error("Title and content are both required"));</span>
+<span class="cstat-no" title="statement not covered" >        return;</span>
+      }
+<span class="cstat-no" title="statement not covered" >      this.options = _.extend({</span>
+        description: options.title,
+        publisher: "anonymous",
+        author: ["anonymous"],
+        tocTitle: "Table Of Contents",
+        appendChapterTitles: true,
+        date: new Date().toISOString(),
+        lang: "en",
+        fonts: [],
+        customOpfTemplatePath: null,
+        customNcxTocTemplatePath: null,
+        customHtmlTocTemplatePath: null,
+        version: 3
+      }, options);
+<span class="cstat-no" title="statement not covered" >      if (this.options.version === 2) {</span>
+<span class="cstat-no" title="statement not covered" >        this.options.docHeader = "&lt;?xml version=\"1.0\" encoding=\"UTF-8\"?&gt;\n&lt;!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.1//EN\" \"http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd\"&gt;\n&lt;html xmlns=\"http://www.w3.org/1999/xhtml\" lang=\"" + self.options.lang + "\"&gt;";</span>
+      } else {
+<span class="cstat-no" title="statement not covered" >        this.options.docHeader = "&lt;?xml version=\"1.0\" encoding=\"UTF-8\"?&gt;\n&lt;!DOCTYPE html&gt;\n&lt;html xmlns=\"http://www.w3.org/1999/xhtml\" lang=\"" + self.options.lang + "\"&gt;";</span>
+      }
+<span class="cstat-no" title="statement not covered" >      if (_.isString(this.options.author)) {</span>
+<span class="cstat-no" title="statement not covered" >        this.options.author = [this.options.author];</span>
+      }
+<span class="cstat-no" title="statement not covered" >      if (_.isEmpty(this.options.author)) {</span>
+<span class="cstat-no" title="statement not covered" >        this.options.author = ["anonymous"];</span>
+      }
+<span class="cstat-no" title="statement not covered" >      if (!this.options.tempDir) {</span>
+<span class="cstat-no" title="statement not covered" >        this.options.tempDir = path.resolve(__dirname, "../tempDir/");</span>
+      }
+<span class="cstat-no" title="statement not covered" >      this.id = uuid();</span>
+<span class="cstat-no" title="statement not covered" >      this.uuid = path.resolve(this.options.tempDir, this.id);</span>
+<span class="cstat-no" title="statement not covered" >      this.options.uuid = this.uuid;</span>
+<span class="cstat-no" title="statement not covered" >      this.options.id = this.id;</span>
+<span class="cstat-no" title="statement not covered" >      this.options.images = [];</span>
+<span class="cstat-no" title="statement not covered" >      this.options.content = _.map(this.options.content, <span class="fstat-no" title="function not covered" >function(content, index) {</span></span>
+<span class="cstat-no" title="statement not covered" >        var $, allowedAttributes, allowedXhtml11Tags, titleSlug;</span>
+<span class="cstat-no" title="statement not covered" >        if (!content.filename) {</span>
+<span class="cstat-no" title="statement not covered" >          titleSlug = uslug(removeDiacritics(content.title || "no title"));</span>
+<span class="cstat-no" title="statement not covered" >          content.href = index + "_" + titleSlug + ".xhtml";</span>
+<span class="cstat-no" title="statement not covered" >          content.filePath = path.resolve(self.uuid, "./OEBPS/" + index + "_" + titleSlug + ".xhtml");</span>
+        } else {
+<span class="cstat-no" title="statement not covered" >          content.href = content.filename.match(/\.xhtml$/) ? content.filename : content.filename + ".xhtml";</span>
+<span class="cstat-no" title="statement not covered" >          console.log(content.href);</span>
+<span class="cstat-no" title="statement not covered" >          if (content.filename.match(/\.xhtml$/)) {</span>
+<span class="cstat-no" title="statement not covered" >            content.filePath = path.resolve(self.uuid, "./OEBPS/" + content.filename);</span>
+          } else {
+<span class="cstat-no" title="statement not covered" >            content.filePath = path.resolve(self.uuid, "./OEBPS/" + content.filename + ".xhtml");</span>
+          }
+        }
+<span class="cstat-no" title="statement not covered" >        content.id = "item_" + index;</span>
+<span class="cstat-no" title="statement not covered" >        content.dir = path.dirname(content.filePath);</span>
+<span class="cstat-no" title="statement not covered" >        content.excludeFromToc || (content.excludeFromToc = false);</span>
+<span class="cstat-no" title="statement not covered" >        content.beforeToc || (content.beforeToc = false);</span>
+<span class="cstat-no" title="statement not covered" >        content.author = content.author &amp;&amp; _.isString(content.author) ? [content.author] : !content.author || !_.isArray(content.author) ? [] : content.author;</span>
+<span class="cstat-no" title="statement not covered" >        allowedAttributes = ["content", "alt", "id", "title", "src", "href", "about", "accesskey", "aria-activedescendant", "aria-atomic", "aria-autocomplete", "aria-busy", "aria-checked", "aria-controls", "aria-describedat", "aria-describedby", "aria-disabled", "aria-dropeffect", "aria-expanded", "aria-flowto", "aria-grabbed", "aria-haspopup", "aria-hidden", "aria-invalid", "aria-label", "aria-labelledby", "aria-level", "aria-live", "aria-multiline", "aria-multiselectable", "aria-orientation", "aria-owns", "aria-posinset", "aria-pressed", "aria-readonly", "aria-relevant", "aria-required", "aria-selected", "aria-setsize", "aria-sort", "aria-valuemax", "aria-valuemin", "aria-valuenow", "aria-valuetext", "class", "content", "contenteditable", "contextmenu", "datatype", "dir", "draggable", "dropzone", "hidden", "hreflang", "id", "inlist", "itemid", "itemref", "itemscope", "itemtype", "lang", "media", "ns1:type", "ns2:alphabet", "ns2:ph", "onabort", "onblur", "oncanplay", "oncanplaythrough", "onchange", "onclick", "oncontextmenu", "ondblclick", "ondrag", "ondragend", "ondragenter", "ondragleave", "ondragover", "ondragstart", "ondrop", "ondurationchange", "onemptied", "onended", "onerror", "onfocus", "oninput", "oninvalid", "onkeydown", "onkeypress", "onkeyup", "onload", "onloadeddata", "onloadedmetadata", "onloadstart", "onmousedown", "onmousemove", "onmouseout", "onmouseover", "onmouseup", "onmousewheel", "onpause", "onplay", "onplaying", "onprogress", "onratechange", "onreadystatechange", "onreset", "onscroll", "onseeked", "onseeking", "onselect", "onshow", "onstalled", "onsubmit", "onsuspend", "ontimeupdate", "onvolumechange", "onwaiting", "prefix", "property", "rel", "resource", "rev", "role", "spellcheck", "style", "tabindex", "target", "title", "type", "typeof", "vocab", "xml:base", "xml:lang", "xml:space", "colspan", "rowspan"];</span>
+<span class="cstat-no" title="statement not covered" >        allowedXhtml11Tags = ["div", "p", "h1", "h2", "h3", "h4", "h5", "h6", "ul", "ol", "li", "dl", "dt", "dd", "address", "hr", "pre", "blockquote", "center", "ins", "del", "a", "span", "bdo", "br", "em", "strong", "dfn", "code", "samp", "kbd", "bar", "cite", "abbr", "acronym", "q", "sub", "sup", "tt", "i", "b", "big", "small", "u", "s", "strike", "basefont", "font", "object", "param", "img", "table", "caption", "colgroup", "col", "thead", "tfoot", "tbody", "tr", "th", "td", "embed", "applet", "iframe", "img", "map", "noscript", "ns:svg", "object", "script", "table", "tt", "var"];</span>
+<span class="cstat-no" title="statement not covered" >        content.data = entities.encodeXML(content.data);</span>
+<span class="cstat-no" title="statement not covered" >        $ = cheerio.load(content.data, {</span>
+          lowerCaseTags: true,
+          ignoreWhitespace: true,
+          recognizeSelfClosing: true
+        });
+<span class="cstat-no" title="statement not covered" >        if ($("body").length) {</span>
+<span class="cstat-no" title="statement not covered" >          $ = cheerio.load($("body").html(), {</span>
+            lowerCaseTags: true,
+            ignoreWhitespace: true,
+            recognizeSelfClosing: true
+          });
+        }
+<span class="cstat-no" title="statement not covered" >        $($("*").get().reverse()).each(<span class="fstat-no" title="function not covered" >function(elemIndex, elem) {</span></span>
+<span class="cstat-no" title="statement not covered" >          var attrs, child, k, ref, ref1, that, v;</span>
+<span class="cstat-no" title="statement not covered" >          attrs = elem.attribs;</span>
+<span class="cstat-no" title="statement not covered" >          that = this;</span>
+<span class="cstat-no" title="statement not covered" >          if ((ref = that.name) === "img" || ref === "br" || ref === "hr") {</span>
+<span class="cstat-no" title="statement not covered" >            $(that).text("");</span>
+<span class="cstat-no" title="statement not covered" >            if (that.name === "img") {</span>
+<span class="cstat-no" title="statement not covered" >              $(that).attr("alt", $(that).attr("alt") || "image-placeholder");</span>
+            }
+          }
+<span class="cstat-no" title="statement not covered" >          for (k in attrs) {</span>
+<span class="cstat-no" title="statement not covered" >            v = attrs[k];</span>
+<span class="cstat-no" title="statement not covered" >            if (indexOf.call(allowedAttributes, k) &gt;= 0) {</span>
+<span class="cstat-no" title="statement not covered" >              if (k === "type") {</span>
+<span class="cstat-no" title="statement not covered" >                if (that.name !== "script") {</span>
+<span class="cstat-no" title="statement not covered" >                  $(that).removeAttr(k);</span>
+                }
+              }
+            } else {
+<span class="cstat-no" title="statement not covered" >              $(that).removeAttr(k);</span>
+            }
+          }
+<span class="cstat-no" title="statement not covered" >          if (self.options.version === 2) {</span>
+<span class="cstat-no" title="statement not covered" >            if (ref1 = that.name, indexOf.call(allowedXhtml11Tags, ref1) &gt;= 0) {</span>
+&nbsp;
+            } else {
+<span class="cstat-no" title="statement not covered" >              console.log("Warning (content[" + index + "]):", that.name, "tag isn't allowed on EPUB 2/XHTML 1.1 DTD.");</span>
+<span class="cstat-no" title="statement not covered" >              child = $(that).html();</span>
+<span class="cstat-no" title="statement not covered" >              return $(that).replaceWith($("&lt;div&gt;" + child + "&lt;/div&gt;"));</span>
+            }
+          }
+        });
+<span class="cstat-no" title="statement not covered" >        $("img").each(<span class="fstat-no" title="function not covered" >function(index, elem) {</span></span>
+<span class="cstat-no" title="statement not covered" >          var dir, extension, id, mediaType, url;</span>
+<span class="cstat-no" title="statement not covered" >          url = $(elem).attr("src");</span>
+<span class="cstat-no" title="statement not covered" >          id = uuid();</span>
+<span class="cstat-no" title="statement not covered" >          mediaType = mime.lookup(url);</span>
+<span class="cstat-no" title="statement not covered" >          extension = mime.extension(mediaType);</span>
+<span class="cstat-no" title="statement not covered" >          $(elem).attr("src", "images/" + id + "." + extension);</span>
+<span class="cstat-no" title="statement not covered" >          dir = content.dir;</span>
+<span class="cstat-no" title="statement not covered" >          return self.options.images.push({</span>
+            id: id,
+            url: url,
+            dir: dir,
+            mediaType: mediaType,
+            extension: extension
+          });
+        });
+<span class="cstat-no" title="statement not covered" >        content.data = $.xml();</span>
+<span class="cstat-no" title="statement not covered" >        return content;</span>
+      });
+<span class="cstat-no" title="statement not covered" >      if (this.options.cover) {</span>
+<span class="cstat-no" title="statement not covered" >        this.options._coverMediaType = mime.lookup(this.options.cover);</span>
+<span class="cstat-no" title="statement not covered" >        this.options._coverExtension = mime.extension(this.options._coverMediaType);</span>
+      }
+<span class="cstat-no" title="statement not covered" >      this.render();</span>
+<span class="cstat-no" title="statement not covered" >      this.promise = this.defer.promise;</span>
+    }
+&nbsp;
+    EPub.prototype.render = <span class="fstat-no" title="function not covered" >function() {</span>
+<span class="cstat-no" title="statement not covered" >      var self;</span>
+<span class="cstat-no" title="statement not covered" >      self = this;</span>
+<span class="cstat-no" title="statement not covered" >      console.log("Generating Template Files.....");</span>
+<span class="cstat-no" title="statement not covered" >      return this.generateTempFile().then(<span class="fstat-no" title="function not covered" >function() {</span></span>
+<span class="cstat-no" title="statement not covered" >        console.log("Downloading Images...");</span>
+<span class="cstat-no" title="statement not covered" >        return self.downloadAllImage().fin(<span class="fstat-no" title="function not covered" >function() {</span></span>
+<span class="cstat-no" title="statement not covered" >          console.log("Making Cover...");</span>
+<span class="cstat-no" title="statement not covered" >          return self.makeCover().then(<span class="fstat-no" title="function not covered" >function() {</span></span>
+<span class="cstat-no" title="statement not covered" >            console.log("Generating Epub Files...");</span>
+<span class="cstat-no" title="statement not covered" >            return self.genEpub().then(<span class="fstat-no" title="function not covered" >function(result) {</span></span>
+<span class="cstat-no" title="statement not covered" >              console.log("About to finish...");</span>
+<span class="cstat-no" title="statement not covered" >              self.defer.resolve(result);</span>
+<span class="cstat-no" title="statement not covered" >              return console.log("Done.");</span>
+            }, <span class="fstat-no" title="function not covered" >function(err) {</span>
+<span class="cstat-no" title="statement not covered" >              return self.defer.reject(err);</span>
+            });
+          }, <span class="fstat-no" title="function not covered" >function(err) {</span>
+<span class="cstat-no" title="statement not covered" >            return self.defer.reject(err);</span>
+          });
+        }, <span class="fstat-no" title="function not covered" >function(err) {</span>
+<span class="cstat-no" title="statement not covered" >          return self.defer.reject(err);</span>
+        });
+      }, <span class="fstat-no" title="function not covered" >function(err) {</span>
+<span class="cstat-no" title="statement not covered" >        return self.defer.reject(err);</span>
+      });
+    };
+&nbsp;
+    EPub.prototype.generateTempFile = <span class="fstat-no" title="function not covered" >function() {</span>
+<span class="cstat-no" title="statement not covered" >      var base, generateDefer, htmlTocPath, ncxTocPath, opfPath, self;</span>
+<span class="cstat-no" title="statement not covered" >      generateDefer = new Q.defer();</span>
+<span class="cstat-no" title="statement not covered" >      self = this;</span>
+<span class="cstat-no" title="statement not covered" >      if (!fs.existsSync(this.options.tempDir)) {</span>
+<span class="cstat-no" title="statement not covered" >        fs.mkdirSync(this.options.tempDir);</span>
+      }
+<span class="cstat-no" title="statement not covered" >      fs.mkdirSync(this.uuid);</span>
+<span class="cstat-no" title="statement not covered" >      fs.mkdirSync(path.resolve(this.uuid, "./OEBPS"));</span>
+<span class="cstat-no" title="statement not covered" >      (base = this.options).css || (base.css = fs.readFileSync(path.resolve(__dirname, "../templates/template.css")));</span>
+<span class="cstat-no" title="statement not covered" >      fs.writeFileSync(path.resolve(this.uuid, "./OEBPS/style.css"), this.options.css);</span>
+<span class="cstat-no" title="statement not covered" >      if (self.options.fonts.length) {</span>
+<span class="cstat-no" title="statement not covered" >        fs.mkdirSync(path.resolve(this.uuid, "./OEBPS/fonts"));</span>
+<span class="cstat-no" title="statement not covered" >        this.options.fonts = _.map(this.options.fonts, <span class="fstat-no" title="function not covered" >function(font) {</span></span>
+<span class="cstat-no" title="statement not covered" >          var filename;</span>
+<span class="cstat-no" title="statement not covered" >          if (!fs.existsSync(font)) {</span>
+<span class="cstat-no" title="statement not covered" >            generateDefer.reject(new Error('Custom font not found at ' + font + '.'));</span>
+<span class="cstat-no" title="statement not covered" >            return generateDefer.promise;</span>
+          }
+<span class="cstat-no" title="statement not covered" >          filename = path.basename(font);</span>
+<span class="cstat-no" title="statement not covered" >          fsextra.copySync(font, path.resolve(self.uuid, "./OEBPS/fonts/" + filename));</span>
+<span class="cstat-no" title="statement not covered" >          return filename;</span>
+        });
+      }
+<span class="cstat-no" title="statement not covered" >      _.each(this.options.content, <span class="fstat-no" title="function not covered" >function(content) {</span></span>
+<span class="cstat-no" title="statement not covered" >        var data;</span>
+<span class="cstat-no" title="statement not covered" >        data = self.options.docHeader + "\n  &lt;head&gt;\n  &lt;meta charset=\"UTF-8\" /&gt;\n  &lt;title&gt;" + (entities.encodeXML(content.title || '')) + "&lt;/title&gt;\n  &lt;link rel=\"stylesheet\" type=\"text/css\" href=\"style.css\" /&gt;\n  &lt;/head&gt;\n&lt;body&gt;";</span>
+<span class="cstat-no" title="statement not covered" >        data += content.title &amp;&amp; self.options.appendChapterTitles ? "&lt;h1&gt;" + (entities.encodeXML(content.title)) + "&lt;/h1&gt;" : "";</span>
+<span class="cstat-no" title="statement not covered" >        data += content.title &amp;&amp; content.author &amp;&amp; content.author.length ? "&lt;p class='epub-author'&gt;" + (entities.encodeXML(content.author.join(", "))) + "&lt;/p&gt;" : "";</span>
+<span class="cstat-no" title="statement not covered" >        data += content.title &amp;&amp; content.url ? "&lt;p class='epub-link'&gt;&lt;a href='" + content.url + "'&gt;" + content.url + "&lt;/a&gt;&lt;/p&gt;" : "";</span>
+<span class="cstat-no" title="statement not covered" >        data += content.data + "&lt;/body&gt;&lt;/html&gt;";</span>
+<span class="cstat-no" title="statement not covered" >        return fs.writeFileSync(content.filePath, data);</span>
+      });
+<span class="cstat-no" title="statement not covered" >      fs.writeFileSync(this.uuid + "/mimetype", "application/epub+zip");</span>
+<span class="cstat-no" title="statement not covered" >      fs.mkdirSync(this.uuid + "/META-INF");</span>
+<span class="cstat-no" title="statement not covered" >      fs.writeFileSync(this.uuid + "/META-INF/container.xml", "&lt;?xml version=\"1.0\" encoding=\"UTF-8\" ?&gt;&lt;container version=\"1.0\" xmlns=\"urn:oasis:names:tc:opendocument:xmlns:container\"&gt;&lt;rootfiles&gt;&lt;rootfile full-path=\"OEBPS/content.opf\" media-type=\"application/oebps-package+xml\"/&gt;&lt;/rootfiles&gt;&lt;/container&gt;");</span>
+<span class="cstat-no" title="statement not covered" >      if (self.options.version === 2) {</span>
+<span class="cstat-no" title="statement not covered" >        fs.writeFileSync(this.uuid + "/META-INF/com.apple.ibooks.display-options.xml", "&lt;?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?&gt;\n&lt;display_options&gt;\n  &lt;platform name=\"*\"&gt;\n    &lt;option name=\"specified-fonts\"&gt;true&lt;/option&gt;\n  &lt;/platform&gt;\n&lt;/display_options&gt;");</span>
+      }
+<span class="cstat-no" title="statement not covered" >      opfPath = self.options.customOpfTemplatePath || path.resolve(__dirname, "../templates/epub" + self.options.version + "/content.opf.ejs");</span>
+<span class="cstat-no" title="statement not covered" >      if (!fs.existsSync(opfPath)) {</span>
+<span class="cstat-no" title="statement not covered" >        generateDefer.reject(new Error('Custom file to OPF template not found.'));</span>
+<span class="cstat-no" title="statement not covered" >        return generateDefer.promise;</span>
+      }
+<span class="cstat-no" title="statement not covered" >      ncxTocPath = self.options.customNcxTocTemplatePath || path.resolve(__dirname, "../templates/toc.ncx.ejs");</span>
+<span class="cstat-no" title="statement not covered" >      if (!fs.existsSync(ncxTocPath)) {</span>
+<span class="cstat-no" title="statement not covered" >        generateDefer.reject(new Error('Custom file the NCX toc template not found.'));</span>
+<span class="cstat-no" title="statement not covered" >        return generateDefer.promise;</span>
+      }
+<span class="cstat-no" title="statement not covered" >      htmlTocPath = self.options.customHtmlTocTemplatePath || path.resolve(__dirname, "../templates/epub" + self.options.version + "/toc.xhtml.ejs");</span>
+<span class="cstat-no" title="statement not covered" >      if (!fs.existsSync(htmlTocPath)) {</span>
+<span class="cstat-no" title="statement not covered" >        generateDefer.reject(new Error('Custom file to HTML toc template not found.'));</span>
+<span class="cstat-no" title="statement not covered" >        return generateDefer.promise;</span>
+      }
+<span class="cstat-no" title="statement not covered" >      Q.all([Q.nfcall(ejs.renderFile, opfPath, self.options), Q.nfcall(ejs.renderFile, ncxTocPath, self.options), Q.nfcall(ejs.renderFile, htmlTocPath, self.options)]).spread(<span class="fstat-no" title="function not covered" >function(data1, data2, data3) {</span></span>
+<span class="cstat-no" title="statement not covered" >        fs.writeFileSync(path.resolve(self.uuid, "./OEBPS/content.opf"), data1);</span>
+<span class="cstat-no" title="statement not covered" >        fs.writeFileSync(path.resolve(self.uuid, "./OEBPS/toc.ncx"), data2);</span>
+<span class="cstat-no" title="statement not covered" >        fs.writeFileSync(path.resolve(self.uuid, "./OEBPS/toc.xhtml"), data3);</span>
+<span class="cstat-no" title="statement not covered" >        return generateDefer.resolve();</span>
+      }, <span class="fstat-no" title="function not covered" >function(err) {</span>
+<span class="cstat-no" title="statement not covered" >        console.error(arguments);</span>
+<span class="cstat-no" title="statement not covered" >        return generateDefer.reject(err);</span>
+      });
+<span class="cstat-no" title="statement not covered" >      return generateDefer.promise;</span>
+    };
+&nbsp;
+    EPub.prototype.makeCover = <span class="fstat-no" title="function not covered" >function() {</span>
+<span class="cstat-no" title="statement not covered" >      var coverDefer, destPath, userAgent, writeStream;</span>
+<span class="cstat-no" title="statement not covered" >      userAgent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/34.0.1847.116 Safari/537.36";</span>
+<span class="cstat-no" title="statement not covered" >      coverDefer = new Q.defer();</span>
+<span class="cstat-no" title="statement not covered" >      if (this.options.cover) {</span>
+<span class="cstat-no" title="statement not covered" >        destPath = path.resolve(this.uuid, "./OEBPS/cover." + this.options._coverExtension);</span>
+<span class="cstat-no" title="statement not covered" >        writeStream = null;</span>
+<span class="cstat-no" title="statement not covered" >        if (this.options.cover.slice(0, 4) === "http") {</span>
+<span class="cstat-no" title="statement not covered" >          writeStream = request.get(this.options.cover).set({</span>
+            'User-Agent': userAgent
+          });
+<span class="cstat-no" title="statement not covered" >          writeStream.pipe(fs.createWriteStream(destPath));</span>
+        } else {
+<span class="cstat-no" title="statement not covered" >          writeStream = fs.createReadStream(this.options.cover);</span>
+<span class="cstat-no" title="statement not covered" >          writeStream.pipe(fs.createWriteStream(destPath));</span>
+        }
+<span class="cstat-no" title="statement not covered" >        writeStream.on("end", <span class="fstat-no" title="function not covered" >function() {</span></span>
+<span class="cstat-no" title="statement not covered" >          console.log("[Success] cover image downloaded successfully!");</span>
+<span class="cstat-no" title="statement not covered" >          return coverDefer.resolve();</span>
+        });
+<span class="cstat-no" title="statement not covered" >        writeStream.on("error", <span class="fstat-no" title="function not covered" >function(err) {</span></span>
+<span class="cstat-no" title="statement not covered" >          console.error("Error", err);</span>
+<span class="cstat-no" title="statement not covered" >          return coverDefer.reject(err);</span>
+        });
+      } else {
+<span class="cstat-no" title="statement not covered" >        coverDefer.resolve();</span>
+      }
+<span class="cstat-no" title="statement not covered" >      return coverDefer.promise;</span>
+    };
+&nbsp;
+    EPub.prototype.downloadImage = <span class="fstat-no" title="function not covered" >function(options) {</span>
+<span class="cstat-no" title="statement not covered" >      var auxpath, downloadImageDefer, filename, requestAction, self, userAgent;</span>
+<span class="cstat-no" title="statement not covered" >      self = this;</span>
+<span class="cstat-no" title="statement not covered" >      userAgent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/34.0.1847.116 Safari/537.36";</span>
+<span class="cstat-no" title="statement not covered" >      if (!options.url &amp;&amp; typeof options !== "string") {</span>
+<span class="cstat-no" title="statement not covered" >        return false;</span>
+      }
+<span class="cstat-no" title="statement not covered" >      downloadImageDefer = new Q.defer();</span>
+<span class="cstat-no" title="statement not covered" >      filename = path.resolve(self.uuid, "./OEBPS/images/" + options.id + "." + options.extension);</span>
+<span class="cstat-no" title="statement not covered" >      if (options.url.indexOf("file://") === 0) {</span>
+<span class="cstat-no" title="statement not covered" >        auxpath = options.url.substr(7);</span>
+<span class="cstat-no" title="statement not covered" >        fsextra.copySync(auxpath, filename);</span>
+<span class="cstat-no" title="statement not covered" >        return downloadImageDefer.resolve(options);</span>
+      } else {
+<span class="cstat-no" title="statement not covered" >        if (options.url.indexOf("http") === 0) {</span>
+<span class="cstat-no" title="statement not covered" >          requestAction = request.get(options.url).set({</span>
+            'User-Agent': userAgent
+          });
+<span class="cstat-no" title="statement not covered" >          requestAction.pipe(fs.createWriteStream(filename));</span>
+        } else {
+<span class="cstat-no" title="statement not covered" >          requestAction = fs.createReadStream(path.resolve(options.dir, options.url));</span>
+<span class="cstat-no" title="statement not covered" >          requestAction.pipe(fs.createWriteStream(filename));</span>
+        }
+<span class="cstat-no" title="statement not covered" >        requestAction.on('error', <span class="fstat-no" title="function not covered" >function(err) {</span></span>
+<span class="cstat-no" title="statement not covered" >          console.error('[Download Error]', 'Error while downloading', options.url, err);</span>
+<span class="cstat-no" title="statement not covered" >          fs.unlinkSync(filename);</span>
+<span class="cstat-no" title="statement not covered" >          return downloadImageDefer.reject(err);</span>
+        });
+<span class="cstat-no" title="statement not covered" >        requestAction.on('end', <span class="fstat-no" title="function not covered" >function() {</span></span>
+<span class="cstat-no" title="statement not covered" >          console.log("[Download Success]", options.url);</span>
+<span class="cstat-no" title="statement not covered" >          return downloadImageDefer.resolve(options);</span>
+        });
+<span class="cstat-no" title="statement not covered" >        return downloadImageDefer.promise;</span>
+      }
+    };
+&nbsp;
+    EPub.prototype.downloadAllImage = <span class="fstat-no" title="function not covered" >function() {</span>
+<span class="cstat-no" title="statement not covered" >      var deferArray, imgDefer, self;</span>
+<span class="cstat-no" title="statement not covered" >      self = this;</span>
+<span class="cstat-no" title="statement not covered" >      imgDefer = new Q.defer();</span>
+<span class="cstat-no" title="statement not covered" >      if (!self.options.images.length) {</span>
+<span class="cstat-no" title="statement not covered" >        imgDefer.resolve();</span>
+      } else {
+<span class="cstat-no" title="statement not covered" >        fs.mkdirSync(path.resolve(this.uuid, "./OEBPS/images"));</span>
+<span class="cstat-no" title="statement not covered" >        deferArray = [];</span>
+<span class="cstat-no" title="statement not covered" >        _.each(self.options.images, <span class="fstat-no" title="function not covered" >function(image) {</span></span>
+<span class="cstat-no" title="statement not covered" >          return deferArray.push(self.downloadImage(image));</span>
+        });
+<span class="cstat-no" title="statement not covered" >        Q.all(deferArray).fin(<span class="fstat-no" title="function not covered" >function() {</span></span>
+<span class="cstat-no" title="statement not covered" >          return imgDefer.resolve();</span>
+        });
+      }
+<span class="cstat-no" title="statement not covered" >      return imgDefer.promise;</span>
+    };
+&nbsp;
+    EPub.prototype.genEpub = <span class="fstat-no" title="function not covered" >function() {</span>
+<span class="cstat-no" title="statement not covered" >      var archive, cwd, genDefer, output, self;</span>
+<span class="cstat-no" title="statement not covered" >      genDefer = new Q.defer();</span>
+<span class="cstat-no" title="statement not covered" >      self = this;</span>
+<span class="cstat-no" title="statement not covered" >      cwd = this.uuid;</span>
+<span class="cstat-no" title="statement not covered" >      archive = archiver("zip", {</span>
+        zlib: {
+          level: 9
+        }
+      });
+<span class="cstat-no" title="statement not covered" >      output = fs.createWriteStream(self.options.output);</span>
+<span class="cstat-no" title="statement not covered" >      console.log("Zipping temp dir to", self.options.output);</span>
+<span class="cstat-no" title="statement not covered" >      archive.file(cwd + "/mimetype", {</span>
+        store: true,
+        name: "mimetype"
+      });
+<span class="cstat-no" title="statement not covered" >      archive.directory(cwd + "/META-INF", "META-INF");</span>
+<span class="cstat-no" title="statement not covered" >      archive.directory(cwd + "/OEBPS", "OEBPS");</span>
+<span class="cstat-no" title="statement not covered" >      archive.pipe(output);</span>
+<span class="cstat-no" title="statement not covered" >      archive.on("end", <span class="fstat-no" title="function not covered" >function() {</span></span>
+<span class="cstat-no" title="statement not covered" >        console.log("Done zipping, clearing temp dir...");</span>
+<span class="cstat-no" title="statement not covered" >        return rimraf(cwd, <span class="fstat-no" title="function not covered" >function(err) {</span></span>
+<span class="cstat-no" title="statement not covered" >          if (err) {</span>
+<span class="cstat-no" title="statement not covered" >            return genDefer.reject(err);</span>
+          } else {
+<span class="cstat-no" title="statement not covered" >            return genDefer.resolve();</span>
+          }
+        });
+      });
+<span class="cstat-no" title="statement not covered" >      archive.on("error", <span class="fstat-no" title="function not covered" >function(err) {</span></span>
+<span class="cstat-no" title="statement not covered" >        return genDefer.reject(err);</span>
+      });
+<span class="cstat-no" title="statement not covered" >      archive.finalize();</span>
+<span class="cstat-no" title="statement not covered" >      return genDefer.promise;</span>
+    };
+&nbsp;
+    return EPub;
+&nbsp;
+  })();
+&nbsp;
+  module.exports = EPub;
+&nbsp;
+}).call(this);
+&nbsp;
+&nbsp;</pre></td></tr>
+</table></pre>
+</div>
+<div class="footer">
+    <div class="meta">Generated by <a href="https://github.com/kaizhu256/node-utility2" target="_blank">utility2</a> at Mon Apr 24 2017 10:19:22 GMT+0000 (UTC)</div>
+</div>
+</body>
+</html>
